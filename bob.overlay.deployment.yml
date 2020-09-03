@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bob-deployment
+  labels:
+    app: bob
+spec:
+  selector:
+    matchLabels:
+      app: bob
+  template:
+    metadata:
+      labels:
+        app: bob
+    spec:
+      containers:
+        - name: bob
+          env:
+            - name: foo
+              value: bar

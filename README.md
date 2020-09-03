@@ -78,3 +78,37 @@ spec:
           value: bar
         name: alice
 ```
+
+
+## Comparison with a deployment
+
+I added a deployment for comparison and you will notice in the case of a deployment, the env variables of the bob container is indeed merged:
+
+```yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: bob
+  name: bob-deployment
+spec:
+  selector:
+    matchLabels:
+      app: bob
+  template:
+    metadata:
+      labels:
+        app: bob
+    spec:
+      containers:
+      - env:
+        - name: foo
+          value: bar
+        - name: spring.application.name
+          value: Bob
+        image: alice:0.0.1
+        name: bob
+        ports:
+        - containerPort: 8080
+          name: http-server
+```

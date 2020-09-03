@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bob-deployment
+  labels:
+    app: bob
+spec:
+  selector:
+    matchLabels:
+      app: bob
+  template:
+    metadata:
+      labels:
+        app: bob
+    spec:
+      containers:
+        - name: bob
+          image: alice:0.0.1
+          ports:
+            - name: http-server
+              containerPort: 8080
+          env:
+            - name: spring.application.name
+              value: Bob
