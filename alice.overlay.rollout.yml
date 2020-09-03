@@ -1,0 +1,12 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: alice-Rollout
+spec:
+  template:
+    spec:
+      containers:
+        - name: alice
+          env:
+            - name: foo
+              value: bar

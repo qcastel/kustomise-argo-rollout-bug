@@ -1,0 +1,33 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: alice-Rollout
+  labels:
+    app: alice
+spec:
+  selector:
+    matchLabels:
+      app: alice
+  template:
+    metadata:
+      annotations:
+        linkerd.io/inject: enabled
+      labels:
+        app: alice
+    spec:
+      containers:
+        - name: alice
+          image: alice:0.0.1
+          ports:
+            - name: http-server
+              containerPort: 8080
+          env:
+            - name: spring.application.name
+              value: Alice
+
+  strategy:
+    canary:
+      canaryService: alice-canary
+      stableService: alice-stable
+      trafficRouting:
+        smi: {}

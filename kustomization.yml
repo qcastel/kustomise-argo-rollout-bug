@@ -1,0 +1,7 @@
+bases:
+  - alice.rollout.yml
+
+
+patchesStrategicMerge:
+  - alice.overlay.rollout.yml
+

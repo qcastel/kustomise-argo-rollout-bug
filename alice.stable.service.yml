@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: alice-stable
+  labels:
+    app: alice
+    spring-boot: "true"
+spec:
+  selector:
+    app: alice
+  ports:
+    - name: http
+      port: 80
+      targetPort: http-server
